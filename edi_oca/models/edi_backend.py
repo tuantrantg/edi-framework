@@ -74,7 +74,7 @@ class EDIBackend(models.Model):
         # Model is not granted to be there
         model = exchange_record.model or self._name
         candidates = self._get_component_usage_candidates(exchange_record, key)
-        match_attrs = self._component_match_attrs(exchange_record, key)
+        match_attrs = self.sudo()._component_match_attrs(exchange_record, key)
         return collection._find_component(
             model,
             candidates,
